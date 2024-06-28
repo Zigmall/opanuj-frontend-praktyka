@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import CharacterList from '../components/CharacterList';
-import SearchForm from '../components/SearchForm';
 import SearchTitle from '../components/SearchTitle';
 import { Character } from '../types/Character';
+import GenderField from '../components/GenderField';
+import NameField from '../components/NameField';
+import SortBy from '../components/SortBy';
 
 function CharacterSearchContainer() {
   const [name, setName] = useState('');
@@ -35,14 +37,11 @@ function CharacterSearchContainer() {
       <div className="pt-20" />
       <SearchTitle />
       <div className="pt-8" />
-      <SearchForm
-        name={name}
-        setName={setName}
-        gender={gender}
-        setGender={setGender}
-        sortOption={sortOption}
-        setSortOption={setSortOption}
-      />
+      <form className="space-x-4 flex items-end justify-center">
+        <NameField name={name} setName={setName} />
+        <GenderField gender={gender} setGender={setGender} />
+        <SortBy sortOption={sortOption} setSortOption={setSortOption} />
+      </form>
       <div className="pt-12" />
       <CharacterList characters={sortedCharacters} />
       <div className="pt-16" />
