@@ -1,27 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CharacterList from '../components/CharacterList';
 import SearchTitle from '../components/SearchTitle';
-import { Character } from '../types/Character';
 import GenderField from '../components/GenderField';
 import NameField from '../components/NameField';
 import SortBy from '../components/SortBy';
+import useCharacterSearch from '../hooks/useCharacterSearch';
 
 function CharacterSearchContainer() {
   const [name, setName] = useState('');
   const [gender, setGender] = useState('');
-  const [characters, setCharacters] = useState<Character[]>([]);
+  const characters = useCharacterSearch(name, gender);
   const [sortOption, setSortOption] = useState('');
 
-  useEffect(() => {
-    if (name || gender) {
-      fetch(
-        `https://rickandmortyapi.com/api/character/?name=${name}&gender=${gender}`
-      )
-        .then((response) => response.json())
-        .then((data) => setCharacters(data.results || []))
-        .catch((error) => console.error('Error fetching data:', error));
-    }
-  }, [name, gender]);
 
   const sortedCharacters = [...characters].sort((a, b) => {
     if (sortOption === 'name') {
