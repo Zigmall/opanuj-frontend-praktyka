@@ -5,22 +5,14 @@ import GenderField from '../components/GenderField';
 import NameField from '../components/NameField';
 import SortBy from '../components/SortBy';
 import useCharacterSearch from '../hooks/useCharacterSearch';
+import sortCharacters from '../utils/sortCharacter';
 
 function CharacterSearchContainer() {
   const [name, setName] = useState('');
   const [gender, setGender] = useState('');
   const characters = useCharacterSearch(name, gender);
   const [sortOption, setSortOption] = useState('');
-
-
-  const sortedCharacters = [...characters].sort((a, b) => {
-    if (sortOption === 'name') {
-      return a.name.localeCompare(b.name);
-    } else if (sortOption === 'created') {
-      return new Date(a.created).getTime() - new Date(b.created).getTime();
-    }
-    return 0;
-  });
+  const sortedCharacters = sortCharacters(characters, sortOption);
 
   return (
     <>
