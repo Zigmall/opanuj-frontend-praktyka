@@ -19,8 +19,8 @@ const GenderSelect: React.FC<TypeSelectProps> = ({
       >
         <option value="country">Country</option>
         <option value="currency">Currency</option>
-        <option value="language">language</option>
-        <option value="capitol">capitol</option>
+        <option value="language">Language</option>
+        <option value="capitol">Capitol</option>
       </select>
     </label>
   );
