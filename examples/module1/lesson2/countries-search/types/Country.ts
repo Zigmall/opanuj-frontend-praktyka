@@ -1,8 +1,14 @@
 export interface Country {
-  id: number;
   currency: string;
   language: string;
   capitol: string;
-  country: string;
-  flag: string;
+  name: {
+    common: string;
+    official: string;
+  };
+  population: number;
+  flags: {
+    png: string;
+    svg: string;
+  };
 }
