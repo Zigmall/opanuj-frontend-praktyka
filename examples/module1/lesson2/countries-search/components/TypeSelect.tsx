@@ -17,10 +17,10 @@ const GenderSelect: React.FC<TypeSelectProps> = ({
         onChange={(e) => setQueryType(e.target.value)}
         className="border h-7 mt-1"
       >
-        <option value="country">Country</option>
+        <option value="name">Country</option>
         <option value="currency">Currency</option>
-        <option value="language">Language</option>
-        <option value="capitol">Capitol</option>
+        <option value="lang">Language</option>
+        <option value="capital">Capital</option>
       </select>
     </label>
   );

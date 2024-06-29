@@ -11,7 +11,7 @@ const QueryField = ({
       <input
         className="border h-7 mt-1 indent-2"
         type="text"
-        placeholder="Rick Sanchez..."
+        placeholder="Search..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
