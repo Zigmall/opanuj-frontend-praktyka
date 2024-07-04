@@ -1,18 +1,24 @@
 import axios from 'axios';
 
-// Add a request interceptor
-axios.interceptors.request.use(function (config) {
+const requestTimeLogger = (config) => {
+  config.metadata = { startTime: new Date() };
   return config;
-});
+};
 
-// Add a response interceptor
-axios.interceptors.response.use(function (response) {
-  // Do something with response data
+const responseTimeReader = (response) => {
+  const {
+    config: { url, metadata },
+  } = response;
+  const elapsedTime = new Date() - metadata.startTime;
+  console.log(`Request under ${url} took ${elapsedTime}ms`);
   return response;
-});
+};
+
+axios.interceptors.request.use(requestTimeLogger);
+axios.interceptors.response.use(responseTimeReader);
 
 const {
   data: { articles },
-} = await axios.get('/api/data/articles?timeout=3000');
+} = await axios.get('localhost:3000/api/data/articles?timeout=3000');
 
 document.querySelector('#data').innerHTML = articles[0].content;
